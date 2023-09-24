@@ -38,12 +38,12 @@ public class Main {
 
 
 
-//        Task 3
-        WordsCounter wc = new WordsCounter();
-        System.out.println("Програма рахує кількість одинакових слів у файлі і виводить у порядку зменшення." +
-                "Введіть назву файлу або шлях до файлу в якому знаходяться слова");
-//        "words.txt"
-        wc.counter(sc.nextLine());
+////        Task 3
+//        WordsCounter wc = new WordsCounter();
+//        System.out.println("Програма рахує кількість одинакових слів у файлі і виводить у порядку зменшення." +
+//                "Введіть назву файлу або шлях до файлу в якому знаходяться слова");
+////        "words.txt"
+//        wc.counter(sc.nextLine());
 
     }
 }

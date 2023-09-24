@@ -5,7 +5,8 @@ import java.util.*;
 
 
 public class WordsCounter {
-    public void counter(String fileName) throws IOException {
+
+    /*public void counter(String fileName) throws IOException {
 //    public static void main(String[] args) throws IOException{
         BufferedReader bufferedReader = new BufferedReader(new FileReader("words.txt")); //приймаємо на вхід файл
 
@@ -81,34 +82,33 @@ public class WordsCounter {
             p=0;
         }
         return result;
+    }*/
+
+    public void counter(String fileName) throws IOException {
+        InputStream fis = new FileInputStream(fileName);
+        Scanner scanner = new Scanner(fis);
+
+        Map<String, Integer> map = new HashMap<>();
+        while (scanner.hasNext()) {
+            String s = scanner.nextLine();
+            String[] words = s.split(" ");
+            for (String word : words) {
+                if (!word.equals("")) {
+                    if (!map.containsKey(word)) {
+                        map.put(word, 1);
+                    } else {
+                        map.put(word, map.get(word) + 1);
+                    }
+                }
+            }
+        }
+
+        Comparator<String> comparator = (o1, o2) -> map.get(o1) < map.get(o2) ? 1 : -1;
+        Map<String, Integer> sortedMap = new TreeMap<>(comparator);
+        sortedMap.putAll(map);
+
+        for (Map.Entry<String, Integer> m: sortedMap.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
     }
-
-
-//    public void counter(String fileName) throws IOException {
-//        InputStream fis = new FileInputStream(fileName);
-//        Scanner scanner = new Scanner(fis);
-//
-//        Map<String, Integer> map = new HashMap<>();
-//        while (scanner.hasNext()) {
-//            String s = scanner.nextLine();
-//            String[] words = s.split(" ");
-//            for (String word : words) {
-//                if (!word.equals("")) {
-//                    if (!map.containsKey(word)) {
-//                        map.put(word, 1);
-//                    } else {
-//                        map.put(word, map.get(word) + 1);
-//                    }
-//                }
-//            }
-//        }
-//
-//        Comparator<String> comparator = (o1, o2) -> {
-//            if (Objects.equals(map.get(o1), map.get(o2))) return 0;
-//            return map.get(o1) < map.get(o2) ? 1 : -1;
-//        };
-//        Map<String, Integer> sortedMap = new TreeMap<>(comparator);
-//        sortedMap.putAll(map);
-//        System.out.println("sortedMap = " + sortedMap);
-//    }
 }
